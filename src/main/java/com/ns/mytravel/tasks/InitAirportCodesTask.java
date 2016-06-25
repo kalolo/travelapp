@@ -1,31 +1,25 @@
 package com.ns.mytravel.tasks;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ns.mytravel.api.respositories.AirportRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.ns.mytravel.api.entities.Airport;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Service
 public class InitAirportCodesTask {
 
-    public static void checkData() {
+    @Autowired
+    private AirportRepository airportRepository;
 
-        System.out.println( InitAirportCodesTask.class + " :: " );
 
-        try {
+    public void checkData() {
 
-            ObjectMapper mapper  = new ObjectMapper();
-            Airport[] airports   = mapper.readValue(new ClassPathXmlApplicationContext().getResource("classpath:airports.json").getInputStream(), Airport[].class);
 
-            for ( Airport airport : airports ) {
-
-                System.out.println(">> Airport: " + airport);
-
-            }
-
-            System.out.println( "Airports found: " + airports.length );
-
-        } catch (Exception e){
-
-            System.out.println(e.getMessage());
-        }
 
 
     }
